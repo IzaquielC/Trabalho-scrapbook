@@ -18,3 +18,7 @@ document.getElementsByClassName("btn-salvar")[0].addEventListener("click", funct
     event.preventDefault();
     scrapbook.salvar();
 })
+
+document.getElementsByName("search")[0].addEventListener("keyup", function(event) {
+    scrapbook.pesquisar(event);
+})

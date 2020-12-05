@@ -1,6 +1,9 @@
+import TrocarTela from './app';
+
 const titulo = document.getElementsByName("titulo")[0];
 const texto = document.getElementsByName("texto")[0];
 let editando = null;
+const trocarTela2 = new TrocarTela();
 
 export default class Scrapbook {
     trocarTela() {
@@ -95,12 +98,13 @@ export default class Scrapbook {
                     </div>
                 </div>`;
     }
+
     atribuirEventos() {
-        for (botao of document.getElementsByClassName('btn-remove')) {  
+        for (let botao of document.getElementsByClassName('btn-remove')) {  
             this.atribuirEventoRemover(botao);
         }
         
-        for (botao of document.getElementsByClassName('btn-edit')) { 
+        for (let botao of document.getElementsByClassName('btn-edit')) { 
             this.atribuirEventoEditar(botao);
         }
     }
@@ -122,8 +126,8 @@ export default class Scrapbook {
         botao.addEventListener('click', function(event) {
             event.preventDefault();
     
-            this.trocarTela();
-            editando = this.parentNode.parentNode.parentNode.parentNode;
+            trocarTela2.trocarTela2();
+            editando = botao.parentNode.parentNode.parentNode.parentNode;
             titulo.value = editando.getElementsByClassName('h2')[0].innerHTML.trim();
             texto.value = editando.getElementsByClassName('card-text')[0].innerHTML.trim();
         })
@@ -140,7 +144,7 @@ export default class Scrapbook {
     pesquisar(event) {
         let cards = document.getElementsByClassName('card');
     
-        for (card of cards) {
+        for (let card of cards) {
             if (!card.getElementsByClassName('card-text')[0].innerText.toUpperCase().includes(event.target.value.toUpperCase())) {
                 card.parentNode.classList.add('d-none');
             } else {
